@@ -1,33 +1,5 @@
--- create TABLE Students (
--- id bigint primary key,
--- name varchar(50),
--- birthday date,
--- group int,
--- );
---
--- create table Subject (
--- id bigint primary key,
--- name varchar(50),
--- description varchar(200),
--- grade int
--- );
---
--- create table PaymentType (
--- id bigint primary key,
--- name varchar(100),
--- );
---
--- create table Payment (
--- id bigint primary key,
--- type_id bigint foreign key reference PaymentType(id),
--- );
---
--- create table Mark (
--- id bigint primary key,
--- student_id bigint foreign key reference Student(id),
--- subject_id bigint foreign key reference Subject(id),
--- mark int
--- );
---
---
---
+CREATE TABLE Student("id" bigint PRIMARY KEY not null auto_increment, "name" varchar, "birthday" date, "group" int);
+CREATE TABLE Subject("id" bigint PRIMARY KEY not null auto_increment, "name" varchar, "description" varchar, "grade" int);
+CREATE TABLE PaymentType("id" bigint PRIMARY KEY not null auto_increment, "name" varchar);
+CREATE TABLE Payment("id" bigint PRIMARY KEY not null auto_increment, "type_id" bigint, "amount" decimal, "student_id" bigint, "payment_date" datetime, foreign key ("type_id") references PaymentType("id"), foreign key ("student_id") references Student("id"));
+CREATE TABLE Mark("id" bigint PRIMARY KEY not null auto_increment, "student_id" bigint, subject_id bigint, "mark" int, foreign key ("student_id") references Student("id"), foreign key (subject_id) references Subject("id"));
